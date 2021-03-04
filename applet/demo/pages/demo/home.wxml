@@ -1,0 +1,6 @@
+<view>小程序的div</view>
+<text>小程序的span</text>
+<view>name:{{name}}</view>
+<button bindtap="changeName" data-hehe='123'>改名</button>
+<view>列表</view>
+<text wx:for='{{arr}}' wx:key='index'>{{index}}:{{item}}</text>

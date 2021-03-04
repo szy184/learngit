@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <tp1></tp1>
+    </div>
+    <!-- 组件1 -->
+    <template id="tp1">
+        <div class="tp1">
+            这里是组件1 
+            <button>父组件按钮</button><hr>
+            <!--  -->
+            <tp2 :hehe='name' xixi='网易'></tp2>
+        </div>
+    </template>
+    
+    <!-- 组件2 -->
+    <template id="tp2">
+        <div class="tp2">
+            这里是组件2
+            <div class="test" v-show='show'>
+                子组件的div
+                {{hehe}}{{xixi}}
+            </div>
+        </div>
+    </template>
+    <script>
+        Vue.component("tp1",{
+            template:'#tp1',
+            data(){
+                return {
+                    name:'韩梅梅'
+                }
+            }
+        })
+        Vue.component("tp2",{
+            template:'#tp2',
+            props:['hehe','xixi'],//用来接收自定义属性
+            data(){
+                return {
+                    show:true
+                }
+            }
+        })
+        let vm = new Vue({
+            el:'#app',
+           
+        })
+        /*
+        写两个组件是一个嵌套关系
+        父组件有一个按钮
+        子组件有一个div
+        父组件的按钮控制子组件div的显示隐藏
+        props 自定义属性
+
+        不管是实例还是组件  自己的数据只能自己使用
+        props 将父亲的数据传给儿子
+        1.在组件标签上使用自定属性
+        2.在组件内部通过props来接受自定义属性
+        3.接收完了 既可以在组件里直接使用 只能用不能改
+        */
+    </script>
+</body>
+</html>

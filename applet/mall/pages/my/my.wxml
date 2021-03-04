@@ -1,0 +1,29 @@
+<view class='my container'>
+<!-- 用户信息 -->
+<view class='userInfo'>
+  <view wx:if='{{token}}'>用户id:{{uid}}</view>
+  <view wx:else bindtap="goLogin"> 
+
+    <button bindtap='goLogin'>账号登录</button>
+    <button bindtap='goWxLogin'>授权登录</button>
+  </view>
+</view>
+<view class='avator'>
+<open-data class='avator' type="userAvatarUrl"></open-data>
+</view>
+<open-data type="userNickName"></open-data>
+<view class='order'>
+  <view bindtap="goOrderList" data-type='-2'>全部</view>
+  <view bindtap="goOrderList" data-type='-1'>待付款</view>
+  <view bindtap="goOrderList" data-type='-0'>代发货</view>
+  <view bindtap="goOrderList" data-type='1'>待收货</view>
+  <view bindtap="goOrderList" data-type='2'>完成</view>
+</view>
+
+<!-- 功能列表
+1. 订单查询
+2. 联系客服
+3. 修改地址
+4. 优惠券 
+ -->
+</view>

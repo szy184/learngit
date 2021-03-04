@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        这里是实例
+        <hr>
+        <!-- 绑定在son身上的自定义组件 事件名叫 custom 处理函数叫add -->
+        <son @custom='add'></son>
+        <!-- 绑定在button身上的内置组件 事件名叫 custom 处理函数叫add  -->
+        <!-- <button @click='add'>添加</button><hr> -->
+    </div>
+    <!-- 组件1 -->
+    <template id="tp1">
+        <div class="tp1">
+            这里是子组件
+            <button @click='sonClick'>子组件按钮</button>
+        </div>
+    </template>
+    
+    <script>
+      Vue.component('son',{
+          template:'#tp1',
+          methods:{
+            sonClick(){
+                console.log('子组件的处理方法')
+                //通过emit方法触发自定义事件  参数1 自定义事件名
+                this.$emit('custom',666)
+            }
+          }
+      })
+        let vm1 = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            },
+            methods:{
+                add(num){
+                  alert('点到我了'+num)
+                }
+            }
+           
+        })
+        /*
+        自定义事件
+        emit 可以触发绑定
+        1.在组件标签上绑定一个自定义事件
+        <son @custom='add'></son>
+        2.在组件内部 通过emit 触发这个自定义事件
+        在子组件里触发父组件的方法
+        */
+    </script>
+</body>
+</html>

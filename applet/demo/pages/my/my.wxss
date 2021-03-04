@@ -1,0 +1,5 @@
+/* pages/my/my.wxss */
+.hehe{
+  width: 100rpx;
+  height: 140vh;
+}

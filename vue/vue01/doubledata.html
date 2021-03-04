@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" @input='input' :value='value'> -->
+        <input type="text" v-model='value'>
+        <p>{{value}}</p>
+    </div>
+    <script>
+        let v =new Vue({
+            el:'#app',
+            data:{
+                value:'你好'
+            },
+            // methods:{
+            //     input(e){
+            //         console.log(e.target.value)
+            //         this.value=e.target.value
+            //     }
+            // }
+        })
+        /*
+        v-model 叫双向数据绑定 相当于 事件绑定和属性绑定的综合
+        可以绑定一个表单元素的value 修改表单元素的
+        v-model
+        所有表单元素都能用
+        组件也可以
+        */
+    </script>
+</body>
+</html>

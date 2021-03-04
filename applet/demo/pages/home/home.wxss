@@ -1,0 +1,12 @@
+/* pages/home/home.wxss */
+.home-wrapper{
+
+}
+swiper{
+  width: 750rpx;
+  height: 300rpx;
+  background: blue;
+}
+swiper swiper-item{
+  background: pink;
+}

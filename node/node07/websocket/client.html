@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="msg">
+    <button onclick="sendMsg()">发送</button>
+</body>
+<script>
+let ws = new WebSocket('ws://localhost:3003')
+//客户端连接webscoket 服务器
+ws.onopen=()=>{
+    console.log('服务端连接了')
+}
+ws.onmessage=(msg)=>{
+    console.log('接受服务器的消息',msg)
+}
+function sendMsg(){
+    let msg = document.getElementById('msg').value;
+    //向服务端发消息
+    ws.send(msg)
+}
+
+</script>
+</html>

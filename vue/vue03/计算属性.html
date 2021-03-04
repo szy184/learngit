@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        {{num}}
+        {{hehe}}
+        <button @click=add>add</button>
+    </div>
+    
+</body>
+<script>
+/*
+计算属性
+也是对数据做处理
+配置项的一种
+与data的数据关联 返回处理之后的数据
+计算属性直接当成变量来用
+缓存性的特点 相关属性发生改变计算会重新执行
+*/
+let vm =new Vue({
+    el:'#app',
+    data:{
+        num:1,
+        name:'韩梅梅'
+    },
+    methods:{
+        add(){
+            this.num++
+        }
+    },
+   computed:{
+       hehe(){
+           return ((this.num+2+4)-6+2/24)/8
+       }
+   }
+  
+})
+</script>
+</html>

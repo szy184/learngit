@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+      <hehe></hehe>
+    </div>
+   <template id="tp1">
+       <div>
+        
+       </div><p>111</p>
+   </template>
+    <script>
+        Vue.component('hehe',{
+            template:'#tp1'
+        })
+        let vm2 = new Vue({
+            el:'#app1'
+        })
+        /*
+       组件配置项template
+       和实例里的 el 类似 关联dom元素
+       1。dom结构简单 直接使用字符串
+       2.dom复杂 template标签 该标签不会真正的渲染 只允许有一个根元素
+        */
+    </script>
+</body>
+</html>

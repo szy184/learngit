@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+      <hehe></hehe>
+    </div>
+    
+    <script>
+        //组件的创建
+        let xixi = Vue.extend({template:'<h1>组件</h1>'})
+        //注册一个组件 VUe.component('组件的名字',创建的组件)
+        Vue.component('hehe',xixi)
+        //把组件名当作标签名来使用 组件名不能和标签名一致
+        
+        let vm1=new Vue({
+            el:'#app1',
+            data:{
+                name:'实例1'
+            },
+            methods:{
+
+            },
+           
+        })
+        /*
+        组件继承自实例  实例中的属性有的组件也有，但会有一些变异
+        2.组件的目的是为了实现复用
+        */
+    </script>
+</body>
+</html>

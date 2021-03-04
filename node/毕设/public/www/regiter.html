@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css" />
+<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>用户注册</title>
+<style>
+    .loginWraper{background: none;}
+    .loginBox{
+        height: 550px;
+        background-size: cover;
+        top: 30%;
+    }
+    p{
+        display: none;
+        font-size: 12px;
+        color: red;
+    }
+    .password_info{
+        color: orange;
+        font-size: 12px;
+    }
+    #paw input{
+        margin-right: 30px;
+    }
+</style>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<input type="hidden" id="TenantId" name="TenantId" value="" />
+<div class="loginWraper">
+  <div id="loginform" class="loginBox">
+  
+    <div class="form form-horizontal" >
+      <div class="row cl">
+        <label class="form-label col-xs-3">用户名：</label>
+        <div class="formControls col-xs-8" id="name">
+          <input  name="" type="text" placeholder="账户" class="input-text size-L">
+          <p>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</p>
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3">密码：</label>
+        <div class="formControls col-xs-8" id="paw">
+          <input  name="" type="password" placeholder="密码" class="input-text size-L">
+          <p>密码由6-12位数字/字母/下划线组成</p><span class="password_info"></span>
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3">确认密码：</label>
+        <div class="formControls col-xs-8" id="pawSure">
+          <input  name="" type="password" placeholder="确认密码" class="input-text size-L">
+          <p>两次密码输入不一致</p>
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3">手机号：</label>
+        <div class="formControls col-xs-8" id="tel">
+          <input name="" type="text" placeholder="请输入手机号" class="input-text size-L">
+          <p>请输入有效的手机号码</p>
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3">年龄：</label>
+        <div class="formControls col-xs-8" id="num">
+          <input  name="" type="number" placeholder="年龄" class="input-text size-L">
+          
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3">性别：</label>
+        <div class="formControls col-xs-8" id="sex">
+			<label><input type="radio" value="1" name="sex" id="sex1"/>男</label>
+			<label><input type="radio" value="0"  name="sex" id="sex2"/>女</label>
+        </div>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <input id="sub" name="" type="button" class="btn btn-success radius size-L" value="&nbsp;注&nbsp;&nbsp;&nbsp;&nbsp;册&nbsp;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script>
+var reg = /([\-]|\w|[\u4e00-\u9fa5]){1,}/;
+var $name = $('#name').find('input')
+$name.blur(function(){
+	var val = $(this).val();
+	if(reg.test(val)){
+		$('#name').find('p').css({display:"none"});
+		
+	}else{
+		$('#name').find('p').css({display:"block"});
+	}
+	
+})
+var reg1 = /\w{6,20}/;
+var $paw = $('#paw').find('input');
+$paw.change(function(){
+	var val = $(this).val();
+	if(reg1.test(val)){
+		$('#paw').find('p').css({display:"none"});
+		var modes = 0;
+		if(/[0-9]/.test($paw.val())){
+			modes++;
+		}
+		if(/[a-z]/.test($paw.val())){
+			modes++;
+		}
+		if(/[A-Z]/.test($paw.val())){
+			modes++;
+		}
+		if(/\W/.test($paw.val())){
+			modes++;
+		}
+		if(modes==1){
+			$('.password_info').text('密码强度：弱');
+		}
+		if(modes==2){
+			$('.password_info').text('密码强度：中');
+		}
+		if(modes>=3){
+			$('.password_info').text('密码强度：强');
+			
+		}
+	}else{
+		$('#paw').find('p').css({display:"block"});
+	}
+})
+
+
+var reg2 = /^1\d{10}$/;
+var $phone = $('#tel').find('input');
+$phone.blur(function(){
+	var val = $(this).val();
+	if(reg2.test(val)){
+		$('#tel').find('p').css({display:"none"});
+		
+		
+	}else{
+		$('#tel').find('p').css({display:"block"});
+	}
+})
+
+var $pawSure = $('#pawSure').find('input')
+$pawSure.blur(function(){
+	var paw = $('#paw').find('input').val();
+	var val = $(this).val();
+	if(val == paw){
+		$('#pawSure').find('p').css({display:"none"});
+		    
+	}else{
+		$('#pawSure').find('p').css({display:"block"});
+	}
+})
+
+$('#sub').click(function(){
+    var sex1,sex2
+if($('#sex1').prop('checked')){
+    sex1 = 1;
+}
+if($('#sex2').prop('checked')){
+    sex2 = 1;
+}  
+    let name = $('#name').find('input').val();
+  let pass = $('#paw').find('input').val();
+  let tel = $('#tel').find('input').val();
+  let age = $('#num').find('input').val();
+  let sex = ''
+  if(sex1){
+      sex = "男"
+  }
+  if(sex2){
+      sex = '女'
+  }
+if(reg.test($name.val()) && reg1.test($paw.val()) && reg2.test($phone.val()) && $('#paw').find('input').val()==$('#pawSure').find('input').val()&& $('#num').find('input').val() && (sex1||sex2) ){
+  let url = 'http://localhost:3000/admin/user/reg'
+  $.post(url,{name,pass,tel,age,sex},(res)=>{
+      console.log(res)
+      console.log(name,pass,tel,age,sex)
+      if(res.err==0){
+        let userInfo = res.userInfo
+        localStorage.setItem('userInfo',JSON.stringify(userInfo))
+        alert('注册ok')
+       window.location.href = './userLogin.html'
+      }else{
+        alert(res.msg)
+      }
+  })
+}else{
+    alert("请输入完整")
+}
+
+})
+ 
+
+</script>
+</body>
+</html>

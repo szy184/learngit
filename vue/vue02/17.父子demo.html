@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <button v-on:click='click'>显示隐藏</button>{{state}}
+        <fa v-bind:hehe='state'></fa>
+    </div>
+    <template id="fa">
+        <div>
+            <div class="test" v-show='hehe'></div>
+        </div>
+    </template>
+<script>
+    Vue.component('fa',{
+        template:'#fa',
+        props:['hehe']
+        },
+        )
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            state:true
+        },
+        methods:{
+            click(){
+                this.state=!this.state
+            }
+        }
+    })
+</script>
+</body>
+</html>

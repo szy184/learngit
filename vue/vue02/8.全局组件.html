@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+      <hehe></hehe>
+      {{name}}
+    </div>
+    <hr>
+    <div id="app2">
+        <hehe></hehe>
+        {{name}}
+      </div>
+    <script>
+        // let xixi = Vue.extend({template:'<h1>组件</h1>'})
+        // Vue.component('hehe',xixi)
+        //全局组件的创建的简写  Vue.component('组件名',{组建的配置项})
+        Vue.component('hehe',{template:'<h1>呵呵哒</h1>'})
+        let vm1=new Vue({
+            el:'#app1',
+            data:{
+                name:'实例1'
+            }
+        })
+        let vm2 = new Vue({
+            el:'#app2',
+            data:{
+                name:'实例2'
+            }
+        })
+        /*
+        通过 Vue.component 注册的组件叫全局组件
+        全局组件在所有的实例里都可以用
+        全局组件的注册要求卸载实例的前方
+        */
+    </script>
+</body>
+</html>

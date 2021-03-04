@@ -1,0 +1,18 @@
+<!--pages/home/home.wxml-->
+<view class="home-wrapper">
+<swiper indicator-dots 
+autoplay>
+  <swiper-item wx:for="{{imgs}}">
+    <image src="{{item}}"></image>
+  </swiper-item>
+</swiper>
+</view>
+<button bindtap="jumpTab">跳到tabbar</button>
+<button bindtap="jumpNoTab">跳到非tabbar</button>
+
+<button bindtap="jumpNoTabNavagator">Navagator</button>
+<button bindtap="jumpNoTabRedirect">Redirect</button>
+<button bindtap="jumpNoTabRelanch">Relanch</button>
+
+  <navigator 
+  url="/pages/route/route?us1=123" >声明式导航</navigator>

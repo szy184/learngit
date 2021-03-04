@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        {{time|hehe}}<br>
+        {{time|hehe('-')}}<br>
+        {{time|hehe('/')}}<br>
+    </div>
+    
+</body>
+<script>
+    //多滤器的主要作用 对数据的处理
+//获取一个时间 一般是时间戳格式
+//对数据处理 返回处理过的新数据
+//{{要过滤的数据 |(管道符号) 过滤器的名字}}
+//Vue.filter 参数1 过滤器名 参数2 是一个函数
+//函数的第一个参数data就是要过滤的数据 也就是管道符号前的东西
+Vue.filter('hehe',(data,params='.')=>{//data 需要过滤的数
+    //对数据做处理
+    let  y= (new Date(data)).getFullYear()
+    let  m= (new Date(data)).getMonth()+1
+    let  d= (new Date(data)).getDate()
+    return `${y}${params}${m}${params}${d}`
+    //处理数据 一定要返回
+})
+let vm =new Vue({
+    el:'#app',
+    data:{
+        time:(new Date()).getTime()//时间戳
+    }
+})
+</script>
+</html>

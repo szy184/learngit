@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        table,tr,td{
+            border: 1px solid red;
+        }
+        .green{
+            background: green;
+        }
+        .red{
+            background: red;
+        }
+        .yellow{
+            background: yellow;
+        }
+        .blue{
+            background: blue;
+        }
+        .pink{
+            background: pink;
+        }
+        .grey{
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+            <select @change='change'>
+                <option v-for='(item,index) in color'
+                        :value='index' >{{item}}</option>
+            </select>
+        
+    <table>
+        <tr v-for='(trItem,trIndex) in tables'
+            :class='trIndex%2?color[colorSel][0]:color[colorSel][1]'
+            >
+            <td v-for='(tdItem,tdIndex) in trItem'
+            :style='{opacity:tdSel==tdItem?0.3:1}'
+            @mouseover='move(tdItem)'>
+                {{tdItem}}
+            </td>
+        </tr>
+    </table>
+    </div>
+   <script>
+       let vm = new Vue({
+           el:'#app',
+           data:{
+               tables:[[11,12,13],[21,22,23],[31,32,33]],
+               trSel:0,//默认选中的是小标为0的行,
+               tdSel:11,
+               color:[["green","yellow"],["red","blue"],["pink","grey"]],
+               colorSel:0
+
+               },
+               methods:{
+                   move(item){
+                       this.tdSel=item
+                   },
+                   change(e){
+                    this.colorSel=e.target.value
+                   }
+               }
+       })
+
+   </script>
+</body>
+</html>

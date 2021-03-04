@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <!-- <div id="app">
+        <button v-on:click='toggle'></button>
+        <button @click='toggle1'></button>
+        {{num}}
+        <button v-on:click='add'>add</button>
+        <img v-bind:src="url" alt="" >
+        <img :src="url" alt="" >
+    </div>
+</body>
+<script>
+    let vue = new Vue({
+        el:'#app',
+        data:{
+            num:1,
+            url:'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2164734927,1367682520&fm=26&gp=0.jpg'
+  
+        },
+        methods:{
+            toggle:()=>{
+                console.log('点到我了')
+            },
+            toggle1(){
+                console.log('点到了')
+            },
+            add(){
+                console.log(this);
+                this.num++
+            }
+        }
+    }) 
+</script>-->
+<div id = 'app'>
+    <ul>
+      <!-- 循环数组 -->
+      <li v-for = '(item,index) in lists'>{{item}}{{index}}</li> 
+      <!-- 循环对象 -->
+      <li v-for="(value,key,index) in obj">{{key}}:{{value}}-{{index}}</li> 
+    </ul>
+  </div>
+  
+  <script>
+  let vm  = new Vue({
+    el:"#app",
+    data:{
+      lists:['红色高跟鞋','真实魔鬼游戏','潜伏'],
+      obj:{us:'王一',ps:'12345'},
+    },
+  })
+  </script>
+</html>

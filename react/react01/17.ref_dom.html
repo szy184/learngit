@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../base/react.min.js"></script>
+    <script src="../base/react-dom.min.js"></script>
+    <script src="../base/browser.min.js"></script>
+   
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+    let Component = React.createClass({
+        render(){
+            return (
+               <div>
+                 这里是组件1
+                 <Son></Son>
+               </div>
+            )
+        }
+    })
+    let Son = React.createClass({
+        render(){
+            return(
+                <div>
+                    这里是组件2
+                    <p ref='p'>体育老师：受伤了就别逞强了</p>
+                    <button onClick={()=>{
+                        console.log(this.refs.p.innerText)
+                    }}>点击</button>
+                </div>
+            )
+        }
+    })
+  //ref 可以用来绑定元素
+  //通过组件对象下的 this.refs 进行获取
+   ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+</body>
+</html>

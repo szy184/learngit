@@ -1,0 +1,58 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style> 
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click='toggle'>显示隐藏</button>{{show}}
+        <tp1 :hehe='show'></tp1>
+    </div>
+    <!-- 组件1 -->
+    <template id="tp1">
+        <div >
+            hehe:{{hehe}}
+            <div class="test" v-show='hehe'></div> 
+        </div>
+    </template>
+    
+    <script>
+        Vue.component("tp1",{
+            template:'#tp1',
+            // props:['hehe']
+            props:{'hehe':{type:String}}
+          
+        })
+        let vm1 = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            },
+            methods:{
+                toggle(){
+                    this.show=!this.show
+                }
+            }
+           
+        })
+        /*
+        不管是实例还是组件  自己的数据只能自己使用
+        props 将父亲的数据传给儿子
+        1.在组件标签上使用自定属性
+        2.在组件内部通过props来接受自定义属性
+        3.接收完了 就可以在组件里直接使用 只能用不能改
+
+        */
+    </script>
+</body>
+</html>

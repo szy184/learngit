@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <hehe>这里是test内容</hehe>
+    </div>
+    <template id="hehe">
+        <div class="test">
+           <slot></slot>
+            <h3>这里是hehe组件</h3>
+        </div>
+    </template>
+    
+</body>
+<script>
+/*
+组件标签中的内容不会被渲染
+slot 相当于开启一段空间来存放组件标签中的内容
+当组件标签中的元素 要分开的时候 用具名插槽 slot 属性标记元素 用 name属性给slot标签起名
+*/
+let vm =new Vue({
+    el:'#app',
+    data:{
+    },
+    methods:{
+       
+    },
+    components:{
+        hehe:{
+            template:'#hehe'
+        }
+    }
+
+})
+</script>
+</html>

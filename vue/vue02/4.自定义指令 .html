@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-autofocus>
+    </div>
+    <script>
+        /*
+        Vue.directive('指令名',配置项)
+        使用自定义指令的时候  v-指令名
+        inserted 被指令绑定的元素 插入到真实dom的时候自动执行
+        */
+        Vue.directive('autofocus',{
+            inserted(el,directive){
+                //el 被绑定的元素 directive 自定义指令对象
+                el.focus()
+            }
+        })
+        let vm = new Vue({
+            el:'#app',
+            data:{
+               name:'网易'
+            }
+        })
+    </script>
+</body>
+</html>

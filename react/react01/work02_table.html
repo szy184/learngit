@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work</title>
+    <script src="../base/react.min.js"></script>
+    <script src="../base/react-dom.min.js"></script>
+    <script src="../base/browser.min.js"></script>
+    <style>
+       table,tr,td{
+           border: 1px solid red;
+       }
+       .red{
+           background: red;
+       }
+       .green{
+           background: green;
+       }
+       .blue{
+           background: blue;
+       }
+       .yellow{
+           background: yellow;
+       }
+       .orange{
+           background: orange;
+       }
+       .gray{
+           background: gray;
+       }
+    </style>
+</head>
+<body>
+    <div id="app">
+    </div>
+<script type="text/babel">
+    let Component = React.createClass({
+        getInitialState(){
+           return{
+            tables:[[11,12,13],[21,22,23],[31,32,33]],
+            colors:[['red','green'],['blue','yellow'],['orange','gray']],
+            colorSel:0
+           }
+        },
+        change(num){
+            this.setState({colorSel:num })
+        },
+        render(){
+            return(
+               <div>
+                    <select onChange={()=>{
+                        this.change(this.refs.sel.selectedIndex)  
+                    }} ref='sel'>
+                        {this.state.colors.map((item,index)=>{
+                            return(
+                                <option >{item}</option>  
+                            )
+                        })}
+                    </select>
+                    <table>
+                       {this.state.tables.map((item,index)=>{
+                           return (
+                               <tr className={index%2==0?this.state.colors[this.state.colorSel][0]:this.state.colors[this.state.colorSel][1]}>
+                                    {item.map((item1,index1)=>{
+                                        return(
+                                            <td>{item1}</td>
+                                        )
+                                    })}
+                               </tr>
+                           )
+                       })}
+                    </table>
+               </div>
+            )
+        }
+    })
+    ReactDOM.render(<Component/>,document.getElementById('app'))
+
+</script>
+</body>
+</html>

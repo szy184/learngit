@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        
+        <p id="p">{{num}}</p>{{name}}
+        <button @click='add'>add</button>
+        <button @click='change'>change</button>
+    </div>
+    
+</body>
+<script>
+/*
+监听 是配置项的一种
+监听数据变化 有2个参数一个是更新前的数据 一个是更新后的数据
+watch 监听出发的时候 dom还没更新 所以数据更改之后的 但是dom是更改之前的
+*/
+let vm =new Vue({
+    el:'#app',
+    data:{
+        num:1,
+        name:'韩梅梅'
+    },
+   methods:{
+       add(){
+           this.num++
+       },
+       change(){
+           this.name="李雷雷"
+       }
+   },
+   watch:{
+       num:(newValue,oldValue)=>{
+           console.log('num你变了')
+           console.log('new',newValue)
+           console.log('old',oldValue)
+           
+           console.log('p',document.getElementById('p'))
+           
+           console.log('p',document.getElementById('p').innerText)
+       },
+       name(){
+           console.log('改名')
+       }
+   }
+})
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="test"  v-show="state">父元素</div>{{state}}
+        <son @show='appClick'></son>
+    </div>
+    <template id="son">
+        <div>
+            <button @click='click'>显示隐藏</button>
+        </div>
+    </template>
+    
+</body>
+<script>
+    Vue.component('son',{
+        template:'#son',
+        methods:{
+            click(){
+                this.$emit('show')
+            }
+        }
+    })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            state:true
+        },
+        methods:{
+            appClick(){
+                this.state=!this.state
+            }
+        }
+    })
+</script>
+</html>

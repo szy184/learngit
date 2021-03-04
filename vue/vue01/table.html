@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格渐变</title>
+    <script src="./vue.js"></script>
+    <style>
+        .green{
+            background: green;
+        }
+        .yellow{
+            background: yellow;
+        }
+        .red{
+            background: red;
+        }
+        .blue{
+            background: blue;
+        }
+        .op{
+            opacity: .3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" >
+        <select name=""style="margin-bottom:50px" id='select'>
+            <option v-for='item1 in color' >{{item1.event}}
+            </option>
+        </select>
+        <table border="1" cellpadding='15' cellspacing='0' >
+            <tbody>
+                <tr v-for='item2 in list' v-bind:class='item2.state ? "yellow" : "green"' @click=click(item2) >
+                    <td v-for='(item2,index) in list'  @mouseover='hover(index,item2)' 
+                        @mouseout='hover1(index,item2)' v-bind:class='1==item2.num?"op":""'
+                        >
+                            {{item2.e}}
+                        </td>
+            </tr>
+            </tbody>
+        </table>   
+    </div>
+    <script>  
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                list:[{e:11,state:true,num:0},
+                    {e:22,state:false,num:0},
+                    {e:33,state:true,num:0}] ,
+                color:[ {event:'yellow&&green',state:1},
+                        {event:'red&&blue',state:0},
+                    {event:'pink&&grey',state:0}],    
+            },
+            methods:{
+                click(item1){
+                    console.log(item1[0].o)   
+                },
+                hover(index,item){
+                    this.list[index].num=1
+                },
+                hover1(index){
+                    this.list[index].num=0
+                },
+               
+            }
+        })
+       
+             
+        
+       
+    </script>
+</body>
+</html>

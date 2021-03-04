@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../base/react.min.js"></script>
+   
+    <script src="../base/react-dom.min.js"></script>
+    <!-- 提供 ReactDOM对象 -->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析 jsx 语法糖 -->
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+/*
+react 数据绑定 {变量或表达式} 
+1.jsx 不能直接绑定对象 
+2.jsx 绑定数组  会将数组的每一项拆分出来，渲染到界面上
+3.boolean null undefined 不会在页面上直接渲染 但是可以直接使用三元表达式
+4.其他的基本类型该怎么渲染就怎么渲染
+*/
+    let Component = React.createClass({
+        getInitialState(){
+            return {
+                num:666,
+                string:'呵呵',
+                obj:{name:'网易'},
+                arr:[1,2,3,4,5],
+                boolean:true,
+                null:null,
+                undefined:undefined
+            }
+        },
+        render(){
+            return (
+                <div>
+                    {this.state.num}<br/>
+                    {this.state.string}<br/>
+                    {this.state.arr}<br/>
+                    boolean:{this.state.boolean?"真":'假'}<br/>
+                    <hr/>
+                    null:{this.state.null}<br/>
+                    {this.state.undefined}
+                </div>
+            )
+        }
+    })
+  
+   ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+</body>
+</html>

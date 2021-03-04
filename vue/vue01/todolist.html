@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .green{
+            background: green;
+        }
+        .red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入要做的事"
+        v-model:value='inputValue'
+        >
+        <!-- v-model 将inpu框的value 和 data里的数据进行绑定的 -->
+        <button @click='add'>添加</button>
+        <ul>
+            <li v-for='(item,index) in list'
+            v-bind:class='item.state?"green":"red"'
+            >
+                {{item.event}}
+                <button @click=del(index)>删除</button>
+                <!-- 已经完成显示 已完成 -->
+                <span v-if='item.state'>已完成</span>
+                <button v-else @click='finish(index)'>待完成</button>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+let vm = new Vue({
+    el:'#app',
+    data:{
+        list:[{event:'今晚代码到天明',state:false},
+        {event:'明晚代码到天明',state:true},
+        {event:'明晚恐怖片',state:false}],
+        inputValue:'呵呵哒'
+    },
+    methods:{
+        add(){
+            console.log(this.inputValue)
+            //将用户输入的信息添加到list的数据里 页面会自动发生改变
+            this.list.push({event:this.inputValue,state:false})
+        },
+        del(index){
+            console.log('下标',index)
+            //数组里点击删除的数据
+            this.list.splice(index,1)
+        },
+        finish(index){
+            this.list[index].state=true
+        }
+    }
+})
+/*
+能够添加待办事项
+显示待办事项
+删除待办事项
+完成代办事项
+*/
+</script>
+</html>

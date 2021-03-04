@@ -1,0 +1,10 @@
+view{
+  width:100px;
+  height: 100px;
+  background: green;
+}
+text{
+  width:100px;
+  height: 100px;
+  background: red;
+}

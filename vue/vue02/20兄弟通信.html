@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <son1 :show='state'></son1>
+       <hr>
+       <son2 @custom='faToggle'></son2>
+    </div>
+    <!-- 组件一 -->
+    <template id='son1'>
+        <div>
+            组件1
+            <div class="test" v-show='show'></div>
+        </div>
+    </template>
+
+    <template id='son2'>
+        <div>
+            组件2
+            <button @click='son2Click'>显示隐藏</button>
+        </div>
+    </template>
+    
+    <script>
+         Vue.component('son1',{
+          template:'#son1',
+          props:['show'],
+          methods:{
+            
+            }
+          
+      })
+      Vue.component('son2',{
+          template:'#son2',
+          methods:{
+            son2Click(){
+                this.$emit('custom')
+            }
+            }
+          
+      })
+        let vm1 = new Vue({
+            el:'#app',
+            data:{
+                state:true
+            },
+            methods:{
+              faToggle(){
+                this.state=!this.state
+              }
+            }
+           
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../base/react.min.js"></script>
+    <!-- 提供 React对象
+    rn react-native
+    网页 B(browser)/S(server)  webapp 通过 dom、bom 操作
+    react基本语法 + react-dom 可以写网页
+
+    app C(client)/S(server) 通过 手机硬件以及ui 控制操作
+    react 基本语法 + react-native 可以写app
+    -->
+    <script src="../base/react-dom.min.js"></script>
+    <!-- 提供 ReactDOM对象 -->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析 jsx 语法糖 -->
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+//创建组件  15.6版本   React.createClass
+// 组件是虚拟dom  
+// 将虚拟dom 通过 ReactDOM。render(组件标签，要挂载的元素)
+//  组件名要大写
+    let Component = React.createClass({
+        render() {
+            //render  函数内部 返回 jsx（JavaScript xHTML）
+            return (
+                <h1>Hello World!!</h1>
+            )
+        }
+    })
+    //将组件的虚拟dom挂载到真实dom上
+    ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+</body>
+</html>

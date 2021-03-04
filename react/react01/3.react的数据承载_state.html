@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../base/react.min.js"></script>
+   
+    <script src="../base/react-dom.min.js"></script>
+    <!-- 提供 ReactDOM对象 -->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析 jsx 语法糖 -->
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+/*
+state 类似于vue中的data 组件自己的数据 可以随便的修改
+
+props 相当于自定义属性
+1.组件的内容通过 getDefaultProps声明周期进行初始化
+2.在组件标签上通过自定义属性传递
+3.初始化和传递的冲突以传递的优先级高
+4.props传递的数据在组件内部只能使用不能更改
+*/
+    let Component = React.createClass({
+        getInitialState(){
+            console.log('初始state的生命周期')
+            return {
+                name:'网易',
+            }
+        },
+        getDefaultProps(){
+            return {
+                age:19
+            }
+        },
+        render() {
+            console.log(this)//this指向的是组件对象
+            return (
+                <h1>
+                    🙂
+                    {this.state.name}
+                    {this.props.age}
+                </h1>
+            )
+        }
+    })
+    ReactDOM.render(<Component age='999'/>,document.getElementById('app'))
+</script>
+</body>
+</html>

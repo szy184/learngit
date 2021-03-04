@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../base/react.min.js"></script>
+   
+    <script src="../base/react-dom.min.js"></script>
+    <!-- 提供 ReactDOM对象 -->
+    <script src="../base/browser.min.js"></script>
+    <!-- 帮助浏览器解析 jsx 语法糖 -->
+    <style>
+        #text{
+          height: 100px;
+          width: 100px;
+          background: red;
+        }
+      </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+/*
+条件渲染 
+1. 通过三元表达式控制渲染不渲染
+2.表达式1 || 表达式2  运算符
+3. 函数实现
+*/
+    let Component = React.createClass({
+        getInitialState(){
+            return {
+                show:true
+            }
+        },
+        renderDiv(){
+            let result = null
+            if(this.state.show){
+                result = (<div id="text"></div>)
+            }
+            return result
+        },
+        render(){
+            return (
+               <div>
+                {this.state.show?'显示':'隐藏'}
+                {!this.state.show||<div id="text"></div>}
+                {this.renderDiv()}
+               </div>
+            )
+        }
+    })
+  
+   ReactDOM.render(<Component/>,document.getElementById('app'))
+</script>
+</body>
+</html>

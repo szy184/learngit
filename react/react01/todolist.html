@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work</title>
+    <script src="../base/react.min.js"></script>
+    <script src="../base/react-dom.min.js"></script>
+    <script src="../base/browser.min.js"></script>
+    <style>
+            .red{
+           background: red;
+       }
+       .green{
+           background: green;
+       }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script type="text/babel">
+    let Component = React.createClass({
+        getInitialState(){
+           return{
+                list:[{msg:'今天敲代码',finish:true},{msg:'明天去耍',finish:false}]
+           }
+        },
+        // change(index){
+        //     this.setState({},()=>{
+        //         console.log(this,index)
+        //     })
+        // },
+        render(){
+            return(
+               <div>
+                    <input type="text" ref='input'/><button onClick={()=>{
+                        console.log(this.refs.input.value)
+                        this.setState({},()=>{})
+                        this.state.list.push({msg:this.refs.input.value,finish:false})
+                    }}>添加</button>
+                    <ul>
+                        {this.state.list.map((item,index)=>{
+                            return(
+                                <li className={item.finish?"green":"red"} >{item.msg}
+                                   {item.finish?<span >已完成</span>:<button onClick={()=>{
+                                    // this.change(index)
+                                    this.state.list[index].finish=true
+                                       this.setState({},()=>{
+                                        //    this.state.list[index].finish=true
+                                           console.log(this)
+                                       })
+                                       
+                                   }}>待完成</button>} 
+                                    <button onClick={()=>{
+                                        console.log(this,index)
+
+                                        this.state.list.splice(index,1)
+                                        this.setState({},()=>{})
+                                    }}>删除</button>
+                                </li>
+                            )
+                        })}  
+                    </ul>
+               </div>
+            )
+        }
+    })
+    ReactDOM.render(<Component/>,document.getElementById('app'))
+
+</script>
+</body>
+</html>
